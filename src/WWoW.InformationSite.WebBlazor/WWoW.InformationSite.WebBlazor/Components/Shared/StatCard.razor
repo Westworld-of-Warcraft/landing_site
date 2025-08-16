@@ -1,0 +1,11 @@
+@* StatCard Component *@
+
+<div class="stat-card">
+    <p class="stat-label">@Label</p>
+    <p class="stat-value">@Value</p>
+</div>
+
+@code {
+    [Parameter] public string Label { get; set; } = string.Empty;
+    [Parameter] public string Value { get; set; } = string.Empty;
+}

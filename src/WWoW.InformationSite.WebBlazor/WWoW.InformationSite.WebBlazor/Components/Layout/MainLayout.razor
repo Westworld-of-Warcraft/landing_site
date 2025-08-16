@@ -1,14 +1,15 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <header class="header-container">
+<div class="relative flex min-h-screen flex-col bg-[#18141f] overflow-x-hidden"
+     style='font-family: "Spline Sans","Noto Sans",sans-serif;'>
+    <header>
         <NavMenu />
     </header>
 
-    <main class="main-content">
-        <article class="content px-4">
+    <main class="px-40 flex flex-1 justify-center py-5">
+        <div class="layout-content-container flex flex-col max-w-[960px] w-full">
             @Body
-        </article>
+        </div>
     </main>
     
     <WWoW.InformationSite.WebBlazor.Components.Shared.Footer />
