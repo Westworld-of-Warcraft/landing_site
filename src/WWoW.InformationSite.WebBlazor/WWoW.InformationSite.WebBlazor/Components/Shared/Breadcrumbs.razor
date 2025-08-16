@@ -1,0 +1,25 @@
+@code {
+    [Parameter] public Crumb[] Items { get; set; } = Array.Empty<Crumb>();
+
+    public record Crumb(string Title, string? Href = null);
+}
+
+<nav class="flex items-center space-x-2 text-sm mb-4" aria-label="Breadcrumb">
+    @for (int i = 0; i < Items.Length; i++)
+    {
+        var item = Items[i];
+        var isLast = i == Items.Length - 1;
+
+        @if (!isLast && !string.IsNullOrEmpty(item.Href))
+        {
+            <a href="@item.Href" class="text-[#a89bbf] hover:text-white">
+                @item.Title
+            </a>
+            <span class="text-[#5a4b6b]">/</span>
+        }
+        else
+        {
+            <span class="text-white">@item.Title</span>
+        }
+    }
+</nav>

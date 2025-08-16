@@ -2,78 +2,108 @@
 
 <PageTitle>Documentation - WWoW</PageTitle>
 
-<h1>Documentation</h1>
+@code {
+    private readonly Breadcrumbs.Crumb[] breadcrumbs = new[]
+    {
+        new Breadcrumbs.Crumb("Documentation", "/docs"),
+        new Breadcrumbs.Crumb("Introduction")
+    };
+}
 
-<p>Comprehensive documentation and guides for WWoW.</p>
+<div class="px-40 flex flex-1 justify-center py-6">
+    <div class="layout-content-container flex max-w-[1040px] w-full gap-8">
+        <DocSidebar ActivePath="/docs" />
+        
+        <section class="flex-1">
+            <Breadcrumbs Items="breadcrumbs" />
 
-<div class="docs-container">
-    <div class="docs-section">
-        <h3>Getting Started</h3>
-        <ul>
-            <li><a href="#introduction">Introduction</a></li>
-            <li><a href="#installation">Installation</a></li>
-            <li><a href="#quick-start">Quick Start Guide</a></li>
-        </ul>
-    </div>
-    
-    <div class="docs-section">
-        <h3>API Reference</h3>
-        <ul>
-            <li><a href="#api-overview">API Overview</a></li>
-            <li><a href="#endpoints">Endpoints</a></li>
-            <li><a href="#authentication">Authentication</a></li>
-        </ul>
-    </div>
-    
-    <div class="docs-section">
-        <h3>Examples</h3>
-        <ul>
-            <li><a href="#basic-examples">Basic Examples</a></li>
-            <li><a href="#advanced-examples">Advanced Examples</a></li>
-        </ul>
+            <header class="px-2 pt-2">
+                <h1 class="text-white text-2xl font-extrabold leading-tight">
+                    Introduction to Westworld of Warcraft
+                </h1>
+            </header>
+
+            <div class="px-2 pt-3">
+                <DocProse>
+                    <p>
+                        Westworld of Warcraft (WWoW) is an ambitious project that transforms a World of Warcraft-like server 
+                        into a living world populated by both real players and AI-driven bots. Our advanced AI agents operate 
+                        independently, learn from their experiences, and create dynamic, emergent gameplay experiences.
+                    </p>
+
+                    <h2>Key Features</h2>
+                    <ul>
+                        <li><strong>AI-Driven Bots:</strong> Autonomous agents with sophisticated decision-making capabilities</li>
+                        <li><strong>Dynamic World:</strong> A persistent, evolving environment that responds to player and bot actions</li>
+                        <li><strong>Real Player Interaction:</strong> Seamless integration between human players and AI agents</li>
+                        <li><strong>Extensible API:</strong> Comprehensive tools for developers to extend and customize the platform</li>
+                        <li><strong>Learning System:</strong> Bots that adapt and improve their strategies over time</li>
+                        <li><strong>Emergent Gameplay:</strong> Unpredictable scenarios arising from complex agent interactions</li>
+                    </ul>
+
+                    <h2>Getting Started</h2>
+                    <p>
+                        To begin working with WWoW, ensure you have the necessary prerequisites installed and follow our 
+                        step-by-step installation guide. Our quick start tutorial will have you running your first AI agents 
+                        within minutes.
+                    </p>
+                    <p>
+                        The platform is designed to be accessible to both newcomers and experienced developers. Whether you're 
+                        interested in understanding bot behavior, implementing custom features, or contributing to the core 
+                        platform, our documentation provides the guidance you need.
+                    </p>
+
+                    <h2>Core Concepts</h2>
+                    <p>
+                        Understanding the fundamentals is crucial for working effectively with WWoW. Key concepts include:
+                    </p>
+                    <ul>
+                        <li><strong>Bot Behavior:</strong> How AI agents make decisions and interact with the world</li>
+                        <li><strong>World Events:</strong> The event system that drives dynamic world changes</li>
+                        <li><strong>Player Interactions:</strong> Integration points between human players and AI agents</li>
+                        <li><strong>State Management:</strong> How the world state is maintained and synchronized</li>
+                    </ul>
+
+                    <h2>API Reference</h2>
+                    <p>
+                        Our comprehensive API documentation covers all functions, classes, and methods available for 
+                        integration and customization. The API is designed with simplicity and extensibility in mind, 
+                        allowing developers to:
+                    </p>
+                    <ul>
+                        <li>Create custom bot behaviors and decision trees</li>
+                        <li>Implement new world events and triggers</li>
+                        <li>Integrate external systems and data sources</li>
+                        <li>Monitor and analyze agent performance</li>
+                    </ul>
+
+                    <h2>Examples</h2>
+                    <p>
+                        Learn through practical demonstrations and code snippets. Our examples section includes:
+                    </p>
+                    <ul>
+                        <li>Basic bot setup and configuration</li>
+                        <li>Advanced behavior scripting</li>
+                        <li>Custom event handling</li>
+                        <li>Integration with external APIs</li>
+                        <li>Performance optimization techniques</li>
+                    </ul>
+
+                    <h2>Contributing</h2>
+                    <p>
+                        WWoW is an open-source project that thrives on community contributions. Whether you're fixing bugs, 
+                        adding features, improving documentation, or sharing feedback, your contributions are valuable to the 
+                        project's success.
+                    </p>
+
+                    <div class="pt-4">
+                        <a href="/docs/contributing"
+                           class="inline-flex items-center justify-center rounded-md bg-[#5b4b6d] px-4 py-2 text-sm font-semibold text-white hover:bg-[#6b5a7d] transition-colors">
+                            Contribute to WWoW
+                        </a>
+                    </div>
+                </DocProse>
+            </div>
+        </section>
     </div>
 </div>
-
-<style>
-    .docs-container {
-        margin-top: 2rem;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-    }
-    
-    .docs-section {
-        border: 1px solid #dee2e6;
-        border-radius: 8px;
-        padding: 1.5rem;
-        background: #f8f9fa;
-    }
-    
-    .docs-section h3 {
-        margin-bottom: 1rem;
-        color: #006bb7;
-    }
-    
-    .docs-section ul {
-        list-style: none;
-        padding: 0;
-    }
-    
-    .docs-section li {
-        margin-bottom: 0.5rem;
-    }
-    
-    .docs-section a {
-        color: #333;
-        text-decoration: none;
-        padding: 0.25rem 0;
-        display: block;
-        border-radius: 4px;
-        padding-left: 0.5rem;
-    }
-    
-    .docs-section a:hover {
-        background-color: #e9ecef;
-        color: #006bb7;
-    }
-</style>

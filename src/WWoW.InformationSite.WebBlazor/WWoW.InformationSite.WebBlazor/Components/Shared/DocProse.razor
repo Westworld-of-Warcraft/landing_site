@@ -1,0 +1,9 @@
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}
+
+<div class="prose prose-invert max-w-none">
+    <div class="space-y-6 text-[#c7bdd6] leading-relaxed">
+        @ChildContent
+    </div>
+</div>
