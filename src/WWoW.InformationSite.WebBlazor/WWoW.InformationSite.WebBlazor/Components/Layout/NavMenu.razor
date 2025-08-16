@@ -1,0 +1,89 @@
+﻿<nav class="navbar">
+    <div class="navbar-container">
+        <!-- Primary icon/logo on the left -->
+        <div class="navbar-brand">
+            <a href="/" class="brand-link">
+                <img src="/favicon.png" alt="WWoW" class="brand-icon" />
+                <span class="brand-text">WWoW</span>
+            </a>
+        </div>
+
+        <!-- Mobile menu toggle -->
+        <div class="mobile-menu-toggle" @onclick="ToggleMobileMenu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </div>
+
+        <!-- Navigation items on the right -->
+        <div class="navbar-nav @(_mobileMenuOpen ? "mobile-open" : "")">
+            <NavLink class="nav-item nav-link" href="/live">
+                Live
+            </NavLink>
+            <NavLink class="nav-item nav-link" href="/about">
+                About
+            </NavLink>
+            <NavLink class="nav-item nav-link" href="/updates">
+                Updates
+            </NavLink>
+            <NavLink class="nav-item nav-link" href="/milestones">
+                Milestones
+            </NavLink>
+            <NavLink class="nav-item nav-link" href="/docs">
+                Docs
+            </NavLink>
+            <NavLink class="nav-item nav-link" href="/dashboard">
+                Dashboard
+            </NavLink>
+            
+            <!-- Language toggle -->
+            <div class="nav-item language-toggle">
+                <button class="language-btn" @onclick="ToggleLanguage">
+                    <span class="language-icon">🌐</span>
+                    <span class="language-text">@_currentLanguage</span>
+                </button>
+            </div>
+            
+            <!-- Avatar for settings/account -->
+            <div class="nav-item avatar-dropdown">
+                <button class="avatar-btn" @onclick="ToggleUserMenu">
+                    <img src="/default-avatar.svg" alt="User" class="avatar-img" />
+                    <span class="dropdown-arrow">▼</span>
+                </button>
+                
+                @if (_userMenuOpen)
+                {
+                    <div class="dropdown-menu">
+                        <a href="/profile" class="dropdown-item">Profile</a>
+                        <a href="/settings" class="dropdown-item">Settings</a>
+                        <hr class="dropdown-divider" />
+                        <a href="/logout" class="dropdown-item">Logout</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</nav>
+
+@code {
+    private bool _mobileMenuOpen = false;
+    private bool _userMenuOpen = false;
+    private string _currentLanguage = "EN";
+
+    private void ToggleMobileMenu()
+    {
+        _mobileMenuOpen = !_mobileMenuOpen;
+    }
+
+    private void ToggleUserMenu()
+    {
+        _userMenuOpen = !_userMenuOpen;
+    }
+
+    private void ToggleLanguage()
+    {
+        _currentLanguage = _currentLanguage == "EN" ? "ES" : "EN";
+        // Here you would implement actual language switching logic
+    }
+}
+

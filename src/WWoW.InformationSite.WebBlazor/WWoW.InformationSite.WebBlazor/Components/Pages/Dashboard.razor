@@ -1,0 +1,121 @@
+@page "/dashboard"
+
+<PageTitle>Dashboard - WWoW</PageTitle>
+
+<h1>Dashboard</h1>
+
+<p>Your personal dashboard for WWoW.</p>
+
+<div class="dashboard-container">
+    <div class="dashboard-card">
+        <h3>Quick Stats</h3>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number">42</span>
+                <span class="stat-label">Active Users</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">15</span>
+                <span class="stat-label">Projects</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">98%</span>
+                <span class="stat-label">Uptime</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="dashboard-card">
+        <h3>Recent Activity</h3>
+        <div class="activity-list">
+            <div class="activity-item">
+                <span class="activity-time">2 hours ago</span>
+                <span class="activity-text">System update completed</span>
+            </div>
+            <div class="activity-item">
+                <span class="activity-time">1 day ago</span>
+                <span class="activity-text">New user registered</span>
+            </div>
+            <div class="activity-item">
+                <span class="activity-time">3 days ago</span>
+                <span class="activity-text">Milestone achieved</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .dashboard-container {
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 2rem;
+    }
+    
+    .dashboard-card {
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 1.5rem;
+        background: #fff;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .dashboard-card h3 {
+        margin-bottom: 1.5rem;
+        color: #006bb7;
+        border-bottom: 2px solid #e9ecef;
+        padding-bottom: 0.5rem;
+    }
+    
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 1rem;
+    }
+    
+    .stat-item {
+        text-align: center;
+        padding: 1rem;
+        background: #f8f9fa;
+        border-radius: 6px;
+    }
+    
+    .stat-number {
+        display: block;
+        font-size: 2rem;
+        font-weight: bold;
+        color: #006bb7;
+    }
+    
+    .stat-label {
+        display: block;
+        font-size: 0.9rem;
+        color: #666;
+        margin-top: 0.25rem;
+    }
+    
+    .activity-list {
+        space-y: 1rem;
+    }
+    
+    .activity-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem;
+        background: #f8f9fa;
+        border-radius: 6px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .activity-time {
+        font-size: 0.875rem;
+        color: #666;
+        min-width: 100px;
+    }
+    
+    .activity-text {
+        flex-grow: 1;
+        margin-left: 1rem;
+    }
+</style>

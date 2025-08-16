@@ -1,0 +1,52 @@
+@page "/milestones"
+
+<PageTitle>Milestones - WWoW</PageTitle>
+
+<h1>Milestones</h1>
+
+<p>Track our progress and upcoming milestones for WWoW development.</p>
+
+<div class="milestones-container">
+    <div class="milestone-item">
+        <h3>Milestone 1</h3>
+        <p class="milestone-status">Planning</p>
+        <p>Initial project setup and planning phase.</p>
+    </div>
+    
+    <div class="milestone-item completed">
+        <h3>Project Setup</h3>
+        <p class="milestone-status">Completed</p>
+        <p>Basic Blazor application structure established.</p>
+    </div>
+</div>
+
+<style>
+    .milestones-container {
+        margin-top: 2rem;
+    }
+    
+    .milestone-item {
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        background: #f8f9fa;
+        border-left: 4px solid #006bb7;
+    }
+    
+    .milestone-item.completed {
+        border-left-color: #28a745;
+        background: #d4edda;
+    }
+    
+    .milestone-status {
+        color: #666;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+    
+    .completed .milestone-status {
+        color: #155724;
+    }
+</style>

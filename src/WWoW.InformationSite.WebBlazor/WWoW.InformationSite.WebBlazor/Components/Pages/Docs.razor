@@ -1,0 +1,79 @@
+@page "/docs"
+
+<PageTitle>Documentation - WWoW</PageTitle>
+
+<h1>Documentation</h1>
+
+<p>Comprehensive documentation and guides for WWoW.</p>
+
+<div class="docs-container">
+    <div class="docs-section">
+        <h3>Getting Started</h3>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#installation">Installation</a></li>
+            <li><a href="#quick-start">Quick Start Guide</a></li>
+        </ul>
+    </div>
+    
+    <div class="docs-section">
+        <h3>API Reference</h3>
+        <ul>
+            <li><a href="#api-overview">API Overview</a></li>
+            <li><a href="#endpoints">Endpoints</a></li>
+            <li><a href="#authentication">Authentication</a></li>
+        </ul>
+    </div>
+    
+    <div class="docs-section">
+        <h3>Examples</h3>
+        <ul>
+            <li><a href="#basic-examples">Basic Examples</a></li>
+            <li><a href="#advanced-examples">Advanced Examples</a></li>
+        </ul>
+    </div>
+</div>
+
+<style>
+    .docs-container {
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+    
+    .docs-section {
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 1.5rem;
+        background: #f8f9fa;
+    }
+    
+    .docs-section h3 {
+        margin-bottom: 1rem;
+        color: #006bb7;
+    }
+    
+    .docs-section ul {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .docs-section li {
+        margin-bottom: 0.5rem;
+    }
+    
+    .docs-section a {
+        color: #333;
+        text-decoration: none;
+        padding: 0.25rem 0;
+        display: block;
+        border-radius: 4px;
+        padding-left: 0.5rem;
+    }
+    
+    .docs-section a:hover {
+        background-color: #e9ecef;
+        color: #006bb7;
+    }
+</style>

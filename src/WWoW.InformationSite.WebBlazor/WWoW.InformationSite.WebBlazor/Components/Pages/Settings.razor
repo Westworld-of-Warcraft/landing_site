@@ -1,0 +1,285 @@
+@page "/settings"
+
+<PageTitle>Settings - WWoW</PageTitle>
+
+<h1>Settings</h1>
+
+<div class="settings-container">
+    <div class="settings-nav">
+        <div class="nav-item active">General</div>
+        <div class="nav-item">Appearance</div>
+        <div class="nav-item">Notifications</div>
+        <div class="nav-item">Privacy</div>
+        <div class="nav-item">Security</div>
+    </div>
+    
+    <div class="settings-content">
+        <div class="settings-section">
+            <h3>General Settings</h3>
+            
+            <div class="setting-group">
+                <label class="setting-label">Language</label>
+                <select class="setting-control">
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                </select>
+                <p class="setting-description">Choose your preferred language for the interface.</p>
+            </div>
+            
+            <div class="setting-group">
+                <label class="setting-label">Time Zone</label>
+                <select class="setting-control">
+                    <option value="utc">UTC</option>
+                    <option value="est">Eastern Time</option>
+                    <option value="pst">Pacific Time</option>
+                    <option value="cet">Central European Time</option>
+                </select>
+                <p class="setting-description">Set your local time zone for accurate timestamps.</p>
+            </div>
+            
+            <div class="setting-group">
+                <label class="setting-label">
+                    <input type="checkbox" checked /> 
+                    Enable auto-save
+                </label>
+                <p class="setting-description">Automatically save your work as you type.</p>
+            </div>
+        </div>
+        
+        <div class="settings-section">
+            <h3>Appearance</h3>
+            
+            <div class="setting-group">
+                <label class="setting-label">Theme</label>
+                <div class="theme-options">
+                    <label class="theme-option">
+                        <input type="radio" name="theme" value="light" checked />
+                        <span class="theme-preview light"></span>
+                        Light
+                    </label>
+                    <label class="theme-option">
+                        <input type="radio" name="theme" value="dark" />
+                        <span class="theme-preview dark"></span>
+                        Dark
+                    </label>
+                    <label class="theme-option">
+                        <input type="radio" name="theme" value="auto" />
+                        <span class="theme-preview auto"></span>
+                        Auto
+                    </label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="settings-section">
+            <h3>Notifications</h3>
+            
+            <div class="setting-group">
+                <label class="setting-label">
+                    <input type="checkbox" checked /> 
+                    Email notifications
+                </label>
+                <p class="setting-description">Receive notifications via email.</p>
+            </div>
+            
+            <div class="setting-group">
+                <label class="setting-label">
+                    <input type="checkbox" /> 
+                    Push notifications
+                </label>
+                <p class="setting-description">Receive push notifications in your browser.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="settings-actions">
+        <button class="btn btn-primary">Save Settings</button>
+        <button class="btn btn-secondary">Reset to Defaults</button>
+    </div>
+</div>
+
+<style>
+    .settings-container {
+        max-width: 1000px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+    
+    .settings-nav {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        border-bottom: 2px solid #e9ecef;
+        padding-bottom: 1rem;
+    }
+    
+    .settings-nav .nav-item {
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+        color: #666;
+    }
+    
+    .settings-nav .nav-item:hover {
+        background: #f8f9fa;
+        color: #333;
+    }
+    
+    .settings-nav .nav-item.active {
+        background: #006bb7;
+        color: white;
+    }
+    
+    .settings-content {
+        display: grid;
+        gap: 2rem;
+    }
+    
+    .settings-section {
+        background: #fff;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 2rem;
+    }
+    
+    .settings-section h3 {
+        margin: 0 0 1.5rem 0;
+        color: #006bb7;
+        border-bottom: 2px solid #e9ecef;
+        padding-bottom: 0.5rem;
+    }
+    
+    .setting-group {
+        margin-bottom: 2rem;
+    }
+    
+    .setting-group:last-child {
+        margin-bottom: 0;
+    }
+    
+    .setting-label {
+        display: block;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 0.5rem;
+    }
+    
+    .setting-control {
+        width: 100%;
+        max-width: 300px;
+        padding: 0.5rem;
+        border: 1px solid #dee2e6;
+        border-radius: 4px;
+        font-size: 1rem;
+    }
+    
+    .setting-control:focus {
+        outline: none;
+        border-color: #006bb7;
+        box-shadow: 0 0 0 2px rgba(0, 107, 183, 0.2);
+    }
+    
+    .setting-description {
+        margin: 0.5rem 0 0 0;
+        color: #666;
+        font-size: 0.9rem;
+    }
+    
+    .theme-options {
+        display: flex;
+        gap: 1rem;
+        margin-top: 0.5rem;
+    }
+    
+    .theme-option {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        padding: 1rem;
+        border: 2px solid #dee2e6;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+    }
+    
+    .theme-option:hover {
+        border-color: #006bb7;
+    }
+    
+    .theme-option input[type="radio"] {
+        margin: 0;
+    }
+    
+    .theme-preview {
+        width: 60px;
+        height: 40px;
+        border-radius: 4px;
+        border: 1px solid #dee2e6;
+    }
+    
+    .theme-preview.light {
+        background: linear-gradient(45deg, #fff 50%, #f8f9fa 50%);
+    }
+    
+    .theme-preview.dark {
+        background: linear-gradient(45deg, #333 50%, #555 50%);
+    }
+    
+    .theme-preview.auto {
+        background: linear-gradient(45deg, #fff 25%, #333 25%, #333 50%, #fff 50%, #fff 75%, #333 75%);
+        background-size: 20px 20px;
+    }
+    
+    .settings-actions {
+        margin-top: 3rem;
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid #dee2e6;
+    }
+    
+    .btn {
+        padding: 0.75rem 2rem;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        margin: 0 0.5rem;
+        transition: all 0.2s ease;
+    }
+    
+    .btn-primary {
+        background: #006bb7;
+        color: white;
+    }
+    
+    .btn-primary:hover {
+        background: #005a96;
+    }
+    
+    .btn-secondary {
+        background: #6c757d;
+        color: white;
+    }
+    
+    .btn-secondary:hover {
+        background: #5a6268;
+    }
+    
+    @@media (max-width: 768px) {
+        .settings-nav {
+            flex-wrap: wrap;
+        }
+        
+        .theme-options {
+            flex-direction: column;
+        }
+        
+        .theme-option {
+            flex-direction: row;
+            justify-content: flex-start;
+        }
+    }
+</style>
