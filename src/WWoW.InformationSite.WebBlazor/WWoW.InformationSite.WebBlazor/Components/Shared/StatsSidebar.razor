@@ -1,0 +1,28 @@
+@using WWoW.InformationSite.WebBlazor.Models
+
+@code {
+    [Parameter] public StatsTab Active { get; set; }
+    [Parameter] public EventCallback<StatsTab> OnSelect { get; set; }
+
+    private string ItemClass(StatsTab t) =>
+        (t == Active)
+            ? "block rounded-md px-3 py-2 text-sm bg-[#2c2433] text-white"
+            : "block rounded-md px-3 py-2 text-sm text-[#c7bdd6] hover:bg-[#2c2433]";
+}
+
+<div class="px-2 pb-3">
+    <div class="text-white text-base font-semibold">WWoW Stats</div>
+    <div class="text-[#a89bbf] text-sm">Live operational metrics</div>
+</div>
+
+<nav class="px-2 space-y-1">
+    @foreach (var t in Enum.GetValues<StatsTab>())
+    {
+        <a href="@($"#{StatsLabels.Anchor(t)}")"
+           class="@ItemClass(t)"
+           @onclick="() => OnSelect.InvokeAsync(t)"
+           @onclick:preventDefault="true">
+            @StatsLabels.Label(t)
+        </a>
+    }
+</nav>

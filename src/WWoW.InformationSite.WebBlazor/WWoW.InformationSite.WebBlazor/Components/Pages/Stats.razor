@@ -1,0 +1,83 @@
+@page "/stats"
+@using WWoW.InformationSite.WebBlazor.Models
+
+<PageTitle>Stats - WWoW</PageTitle>
+
+@code {
+    private StatsTab _active = StatsTab.BotsOnline;
+
+    private Task SetActive(StatsTab t)
+    {
+        _active = t;
+        StateHasChanged();
+        return Task.CompletedTask;
+    }
+
+    private const string Desc =
+        "This page provides a real-time overview of the WWoW simulation platform's operational status. " +
+        "Use the tabs above to navigate between different metrics sections, including bot activity, economic indicators, raid health, and overall server status. " +
+        "Each section displays data from Grafana dashboards, offering detailed insights into the simulation's performance and health.";
+
+    // Use a consistent map-like image for all sections
+    private const string MapImageUrl = "https://images.unsplash.com/photo-1516408388733-2f8364f2e00b?q=80&w=1600&auto=format&fit=crop";
+}
+
+<div class="px-10 py-6">
+    <div class="grid gap-8 lg:grid-cols-[240px_1fr]">
+        <aside class="hidden lg:block">
+            <StatsSidebar Active="_active" OnSelect="SetActive" />
+        </aside>
+
+        <section>
+            <div class="px-2">
+                <div class="text-[#a89bbf] text-sm">
+                    <span>Home</span>
+                    <span class="mx-2 text-[#5a4b6b]">/</span>
+                    <span class="text-white">Stats</span>
+                </div>
+
+                <div class="mt-2">
+                    <h1 class="text-white text-2xl font-extrabold leading-tight">WWoW Live Stats</h1>
+                </div>
+
+                <p class="mt-1 max-w-2xl text-sm leading-relaxed text-[#c7bdd6]">
+                    @Desc
+                </p>
+            </div>
+
+            <div class="mt-6">
+                <SectionTabs Active="_active" OnChange="SetActive" />
+
+                <div class="px-2 pt-3">
+                    <p class="text-sm leading-relaxed text-[#c7bdd6] border-b border-[#332b40] pb-3">
+                        Navigate between different metrics sections using the tabs above. Each section provides detailed insights into the simulation's performance and health.
+                    </p>
+                </div>
+
+                <MetricSection
+                    Id="@StatsLabels.Anchor(StatsTab.BotsOnline)"
+                    Title="@StatsLabels.Label(StatsTab.BotsOnline)"
+                    Description="Current number of AI-driven bots active in the WWoW simulation. Updated in real time, with a snapshot of activity within the game world."
+                    ImageUrl="@MapImageUrl" />
+
+                <MetricSection
+                    Id="@StatsLabels.Anchor(StatsTab.Economy)"
+                    Title="@StatsLabels.Label(StatsTab.Economy)"
+                    Description="Insights into the simulation's economy: currency distribution, transaction rates, and market trends."
+                    ImageUrl="@MapImageUrl" />
+
+                <MetricSection
+                    Id="@StatsLabels.Anchor(StatsTab.RaidHealth)"
+                    Title="@StatsLabels.Label(StatsTab.RaidHealth)"
+                    Description="An overview of ongoing raid health and stability: death events, healing, potion use, and encounter status."
+                    ImageUrl="@MapImageUrl" />
+
+                <MetricSection
+                    Id="@StatsLabels.Anchor(StatsTab.ServerStatus)"
+                    Title="@StatsLabels.Label(StatsTab.ServerStatus)"
+                    Description="Operational status of the WWoW servers: uptime, latency, and processor/memory usage."
+                    ImageUrl="@MapImageUrl" />
+            </div>
+        </section>
+    </div>
+</div>

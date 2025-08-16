@@ -1,0 +1,9 @@
+@code {
+    [Parameter] public string ImageUrl { get; set; } =
+        "https://images.unsplash.com/photo-1516408388733-2f8364f2e00b?q=80&w=1600&auto=format&fit=crop";
+    [Parameter] public bool ShowBorder { get; set; } = false;
+}
+
+<div class="@($"relative overflow-hidden rounded-xl bg-cover bg-center aspect-[16/9] {(ShowBorder ? "border border-[#332b40]" : "")}")"
+     style="background-image:url('@ImageUrl');">
+</div>
