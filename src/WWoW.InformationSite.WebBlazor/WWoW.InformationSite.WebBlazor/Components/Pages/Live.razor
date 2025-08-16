@@ -1,7 +1,65 @@
 @page "/live"
-
+@using WWoW.InformationSite.WebBlazor.Components.Shared;
 <PageTitle>Live - WWoW</PageTitle>
 
-<h1>Live</h1>
+<div class="px-4 pb-2">
+    <span class="text-white/90 text-sm font-medium">Live</span>
+</div>
 
-<p>Welcome to the Live section.</p>
+<HeroOverlay
+    BackgroundImageUrl="https://images.unsplash.com/photo-1526318472351-c75fcf070305?q=80&w=1600&auto=format&fit=crop"
+    Title="Westworld of Warcraft"
+    Subtitle="A simulation platform that transforms a World of Warcraft-like server into a living world populated by both real players and AI-driven bots."
+    CtaText="Watch Live" />
+
+<h2 class="px-4 pt-2 pb-3 text-white text-lg font-bold leading-tight tracking-[-0.015em]">
+    Agent Capabilities
+</h2>
+
+<div class="grid gap-4 p-4 md:grid-cols-3">
+    <FeatureCard
+        Title="Autonomous Behavior"
+        Description="Agents operate independently, making decisions and taking actions based on their environment and goals.">
+        <Icon>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-5" fill="currentColor">
+                <path d="M12 2a7 7 0 0 1 7 7v2h1a2 2 0 0 1 0 4h-1v2a7 7 0 0 1-14 0v-2H4a2 2 0 0 1 0-4h1V9a7 7 0 0 1 7-7Zm0 2a5 5 0 0 0-5 5v2h10V9a5 5 0 0 0-5-5Z"/>
+            </svg>
+        </Icon>
+    </FeatureCard>
+
+    <FeatureCard
+        Title="Adaptive Learning"
+        Description="Agents learn from their experiences, adapting strategies and behaviors over time to become more effective.">
+        <Icon>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-5" fill="currentColor">
+                <path d="M12 3a9 9 0 0 1 9 9h-2a7 7 0 1 0-7 7v-3l5 4-5 4v-3A9 9 0 1 1 12 3Z"/>
+            </svg>
+        </Icon>
+    </FeatureCard>
+
+    <FeatureCard
+        Title="Dynamic Interactions"
+        Description="Agents engage with both players and other agents, creating a dynamic and unpredictable world.">
+        <Icon>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-5" fill="currentColor">
+                <path d="M7 7a4 4 0 1 1 4 4H9v2H7V7Zm6 4a4 4 0 1 1 4 4h-2v2h-2v-6Z"/>
+            </svg>
+        </Icon>
+    </FeatureCard>
+</div>
+
+<h2 class="px-4 pt-4 pb-3 text-white text-lg font-bold leading-tight tracking-[-0.015em]">
+    Project Overview
+</h2>
+
+<VideoPanel BackgroundImageUrl="https://images.unsplash.com/photo-1526318472351-c75fcf070305?q=80&w=1600&auto=format&fit=crop" />
+
+<div class="px-4">
+    <p class="max-w-[900px] text-[#d8d1e6] leading-relaxed">
+        Westworld of Warcraft (WWoW) is an ambitious project that aims to create a persistent, evolving world within a modified World of Warcraft server. By integrating advanced AI techniques, we're building agents that can not only mimic human-like behaviors but also learn and adapt in real-time. This opens up exciting possibilities for emergent gameplay, dynamic narratives, and a truly immersive experience for players.
+    </p>
+
+    <button class="mt-4 inline-flex items-center justify-center rounded-lg h-9 px-4 bg-[#332b40] text-white text-sm font-semibold">
+        Watch Live
+    </button>
+</div>

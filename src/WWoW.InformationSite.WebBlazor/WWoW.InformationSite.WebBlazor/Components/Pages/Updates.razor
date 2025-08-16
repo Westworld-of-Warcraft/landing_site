@@ -1,35 +1,89 @@
 @page "/updates"
+@using WWoW.InformationSite.WebBlazor.Models
 
 <PageTitle>Updates - WWoW</PageTitle>
 
-<h1>Updates</h1>
+@code {
+    private readonly IReadOnlyList<UpdatePost> _all = UpdateData.All.OrderByDescending(p => p.Date).ToList();
+    private HashSet<UpdateCategory> _selected = new();
+    private int _page = 1;
+    private const int PageSize = 3;
 
-<p>Welcome to the Updates section. Here you can find the latest news and updates about WWoW.</p>
+    private IEnumerable<UpdatePost> Filtered =>
+        (_selected.Count == 0 ? _all : _all.Where(p => _selected.Contains(p.Category)));
 
-<div class="updates-container">
-    <div class="update-item">
-        <h3>Latest Update</h3>
-        <p class="update-date">Coming Soon</p>
-        <p>Stay tuned for exciting updates and announcements!</p>
+    private int TotalPages => Math.Max(1, (int)Math.Ceiling(Filtered.Count() / (double)PageSize));
+
+    private IEnumerable<UpdatePost> PageItems =>
+        Filtered.Skip((_page - 1) * PageSize).Take(PageSize);
+
+    private Task ToggleCategory(UpdateCategory cat)
+    {
+        if (!_selected.Add(cat)) _selected.Remove(cat);
+        _page = 1;
+        StateHasChanged();
+        return Task.CompletedTask;
+    }
+
+    private Task ChangePage(int p)
+    {
+        _page = Math.Clamp(p, 1, TotalPages);
+        StateHasChanged();
+        return Task.CompletedTask;
+    }
+}
+
+<div class="px-10 py-6">
+    <div class="grid gap-8 lg:grid-cols-[240px_1fr]">
+        <aside class="hidden lg:block">
+            <SidebarSectionNav />
+        </aside>
+
+        <section>
+            <div class="px-2">
+                <div class="text-[#a89bbf] text-sm">
+                    <span>Overview</span>
+                    <span class="mx-2 text-[#5a4b6b]">/</span>
+                    <span class="text-white">Updates</span>
+                </div>
+
+                <div class="mt-2 flex items-center justify-between">
+                    <h1 class="text-white text-2xl font-extrabold leading-tight">Updates</h1>
+                    <a href="/contributing"
+                       class="inline-flex items-center justify-center rounded-md bg-[#5b4b6d] px-3 py-1.5 text-sm font-semibold text-white hover:bg-[#6b5a7d]">
+                        Contribute
+                    </a>
+                </div>
+
+                <p class="mt-1 max-w-2xl text-sm leading-relaxed text-[#c7bdd6]">
+                    Stay up to date with the latest development progress, releases, and community content as we build the future of AI-driven gaming.
+                </p>
+            </div>
+
+            <div class="mt-6">
+                <UpdateFilterBar Selected="_selected" OnToggle="ToggleCategory" />
+
+                <div class="space-y-6 p-4">
+                    @foreach (var post in PageItems)
+                    {
+                        <UpdateCard Post="post" />
+                    }
+                </div>
+
+                <div class="flex items-center justify-between px-4 py-6">
+                    <div class="flex gap-2">
+                        <a class="inline-flex items-center justify-center rounded-md border border-[#3a3146] bg-[#271f30] px-3 py-1.5 text-sm font-semibold text-[#e8e1f2]"
+                           href="/rss">RSS Feed</a>
+                        <a class="inline-flex items-center justify-center rounded-md bg-[#5b4b6d] px-3 py-1.5 text-sm font-semibold text-white hover:bg-[#6b5a7d]"
+                           href="/contributing">Contribute</a>
+                    </div>
+
+                    @if (TotalPages > 1)
+                    {
+                        <Pagination CurrentPage="_page" TotalPages="TotalPages" OnChange="ChangePage" />
+                    }
+                </div>
+            </div>
+        </section>
     </div>
 </div>
-
-<style>
-    .updates-container {
-        margin-top: 2rem;
-    }
-    
-    .update-item {
-        border: 1px solid #dee2e6;
-        border-radius: 8px;
-        padding: 1.5rem;
-        margin-bottom: 1rem;
-        background: #f8f9fa;
-    }
-    
-    .update-date {
-        color: #666;
-        font-size: 0.9rem;
-        margin-bottom: 1rem;
-    }
-</style>

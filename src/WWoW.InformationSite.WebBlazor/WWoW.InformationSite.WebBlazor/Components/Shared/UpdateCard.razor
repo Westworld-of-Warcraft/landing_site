@@ -1,0 +1,29 @@
+@using WWoW.InformationSite.WebBlazor.Models
+
+@code {
+    [Parameter] public UpdatePost Post { get; set; } = default!;
+
+    private static string CategoryText(UpdateCategory c) => c switch
+    {
+        UpdateCategory.DevLog => "Dev Log",
+        UpdateCategory.Release => "Release",
+        UpdateCategory.Media => "Media",
+        _ => c.ToString()
+    };
+
+    private string Href => string.IsNullOrWhiteSpace(Post.Slug) ? "#" : $"/updates/{Post.Slug}";
+}
+
+<div class="grid grid-cols-1 gap-4 rounded-xl border border-[#332b40] bg-[#221a2a]/60 p-4 md:grid-cols-[1fr_280px]">
+    <div>
+        <div class="text-[#a89bbf] text-xs font-semibold uppercase tracking-wide">@CategoryText(Post.Category)</div>
+        <h3 class="mt-1 text-white text-lg font-extrabold leading-tight">
+            <a class="hover:underline" href="@Href">@Post.Title</a>
+        </h3>
+        <p class="mt-2 text-sm leading-relaxed text-[#c7bdd6]">@Post.Summary</p>
+        <div class="mt-3 text-xs text-[#a89bbf]">@Post.Date.ToString("MMMM d, yyyy")</div>
+    </div>
+    <div class="md:justify-self-end">
+        <img class="h-[160px] w-full rounded-xl object-cover md:w-[280px]" src="@Post.ImageUrl" alt="" />
+    </div>
+</div>

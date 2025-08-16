@@ -1,0 +1,18 @@
+@* Components/FeatureCard.razor *@
+@code {
+    [Parameter] public RenderFragment? Icon { get; set; }
+    [Parameter] public string Title { get; set; } = string.Empty;
+    [Parameter] public string Description { get; set; } = string.Empty;
+}
+
+<div class="rounded-xl border border-[#443753] bg-[#2b2335]/60 p-5 text-white">
+    <div class="mb-3 flex items-center gap-3">
+        <div class="flex items-center justify-center rounded-lg bg-[#34293f] size-9">
+            @if (Icon is not null) { @Icon }
+        </div>
+        <h3 class="text-base font-semibold leading-tight">@Title</h3>
+    </div>
+    <p class="text-sm leading-relaxed text-[#c7bdd6]">
+        @Description
+    </p>
+</div>

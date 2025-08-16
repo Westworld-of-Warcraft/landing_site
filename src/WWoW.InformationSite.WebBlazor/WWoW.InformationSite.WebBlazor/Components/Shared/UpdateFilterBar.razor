@@ -1,0 +1,30 @@
+@using WWoW.InformationSite.WebBlazor.Models
+
+@code {
+    [Parameter] public IEnumerable<UpdateCategory> Categories { get; set; } = Enum.GetValues<UpdateCategory>();
+    [Parameter] public IEnumerable<UpdateCategory> Selected { get; set; } = Array.Empty<UpdateCategory>();
+    [Parameter] public EventCallback<UpdateCategory> OnToggle { get; set; }
+
+    private static string Label(UpdateCategory c) => c switch
+    {
+        UpdateCategory.DevLog => "Dev Log",
+        UpdateCategory.Release => "Release",
+        UpdateCategory.Media => "Media",
+        _ => c.ToString()
+    };
+
+    private string PillClass(UpdateCategory c)
+        => (Selected?.Contains(c) ?? false)
+           ? "bg-[#5b4b6d] text-white"
+           : "bg-[#2c2433] text-[#e1d9f3] hover:bg-[#342b41]";
+}
+
+<div class="flex gap-2 px-4 py-3">
+    @foreach (var c in Categories)
+    {
+        <button class="@($"rounded-full px-3 py-1.5 text-sm font-semibold border border-[#3a3146] {PillClass(c)}")"
+                @onclick="() => OnToggle.InvokeAsync(c)">
+            @Label(c)
+        </button>
+    }
+</div>

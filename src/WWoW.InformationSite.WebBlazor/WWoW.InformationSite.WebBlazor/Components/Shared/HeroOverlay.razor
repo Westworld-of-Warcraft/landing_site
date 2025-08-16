@@ -1,0 +1,32 @@
+@* Components/HeroOverlay.razor *@
+@code {
+    [Parameter] public string BackgroundImageUrl { get; set; } = string.Empty;
+    [Parameter] public string Title { get; set; } = string.Empty;
+    [Parameter] public string Subtitle { get; set; } = string.Empty;
+    [Parameter] public string CtaText { get; set; } = "Watch Live";
+    [Parameter] public EventCallback OnCtaClick { get; set; }
+    private Task HandleClick() => OnCtaClick.InvokeAsync();
+}
+
+<div class="p-4">
+    <div class="relative overflow-hidden rounded-xl bg-cover bg-center aspect-[16/7]"
+         style="background-image: url('@BackgroundImageUrl');">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
+
+        <div class="relative flex h-full items-end">
+            <div class="p-6 md:p-8">
+                <h1 class="text-white text-3xl md:text-4xl font-extrabold leading-tight">@Title</h1>
+                @if (!string.IsNullOrWhiteSpace(Subtitle))
+                {
+                    <p class="mt-2 max-w-3xl text-[#e7e0f4] text-sm md:text-base leading-relaxed">
+                        @Subtitle
+                    </p>
+                }
+                <button class="mt-4 inline-flex items-center justify-center rounded-lg h-9 px-4 bg-[#332b40] text-white text-sm font-semibold"
+                        @onclick="HandleClick">
+                    @CtaText
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

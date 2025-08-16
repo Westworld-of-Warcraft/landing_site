@@ -1,52 +1,48 @@
 @page "/milestones"
+@using WWoW.InformationSite.WebBlazor.Models
 
 <PageTitle>Milestones - WWoW</PageTitle>
 
-<h1>Milestones</h1>
+<div class="px-10 py-6">
+    <div class="grid gap-8 lg:grid-cols-[240px_1fr]">
+        <aside class="hidden lg:block">
+            <SidebarSectionNav />
+        </aside>
 
-<p>Track our progress and upcoming milestones for WWoW development.</p>
+        <section>
+            <div class="px-2">
+                <div class="text-[#a89bbf] text-sm">
+                    <span>Overview</span>
+                    <span class="mx-2 text-[#5a4b6b]">/</span>
+                    <span class="text-white">Milestones</span>
+                </div>
 
-<div class="milestones-container">
-    <div class="milestone-item">
-        <h3>Milestone 1</h3>
-        <p class="milestone-status">Planning</p>
-        <p>Initial project setup and planning phase.</p>
-    </div>
-    
-    <div class="milestone-item completed">
-        <h3>Project Setup</h3>
-        <p class="milestone-status">Completed</p>
-        <p>Basic Blazor application structure established.</p>
+                <div class="mt-2 flex items-center justify-between">
+                    <h1 class="text-white text-2xl font-extrabold leading-tight">Milestones</h1>
+                    <a href="/contributing"
+                       class="inline-flex items-center justify-center rounded-md bg-[#5b4b6d] px-3 py-1.5 text-sm font-semibold text-white hover:bg-[#6b5a7d]">
+                        Contribute
+                    </a>
+                </div>
+
+                <p class="mt-1 max-w-2xl text-sm leading-relaxed text-[#c7bdd6]">
+                    Track our progress as we build the future of AI-driven gaming. Each milestone represents a significant step
+                    toward our vision, with detailed task lists and completion percentages.
+                </p>
+            </div>
+
+            <div class="mt-6 grid gap-6 lg:grid-cols-[1fr_320px]">
+                <div>
+                    @foreach (var m in MilestoneData.All)
+                    {
+                        <MilestoneSection Item="m" />
+                    }
+                </div>
+
+                <div class="order-first lg:order-last">
+                    <MilestoneOutlineList Items="MilestoneData.All" />
+                </div>
+            </div>
+        </section>
     </div>
 </div>
-
-<style>
-    .milestones-container {
-        margin-top: 2rem;
-    }
-    
-    .milestone-item {
-        border: 1px solid #dee2e6;
-        border-radius: 8px;
-        padding: 1.5rem;
-        margin-bottom: 1rem;
-        background: #f8f9fa;
-        border-left: 4px solid #006bb7;
-    }
-    
-    .milestone-item.completed {
-        border-left-color: #28a745;
-        background: #d4edda;
-    }
-    
-    .milestone-status {
-        color: #666;
-        font-size: 0.9rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-    }
-    
-    .completed .milestone-status {
-        color: #155724;
-    }
-</style>

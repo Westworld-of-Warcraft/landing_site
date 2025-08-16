@@ -1,0 +1,27 @@
+@using WWoW.InformationSite.WebBlazor.Models
+
+@code {
+    [Parameter] public ProjectTaskStatus Status { get; set; }
+    [Parameter] public string? Text { get; set; }
+
+    private string Label => string.IsNullOrWhiteSpace(Text)
+        ? Status switch
+        {
+            ProjectTaskStatus.Completed  => "Completed",
+            ProjectTaskStatus.InProgress => "In Progress",
+            _                     => "Planned"
+        }
+        : Text!;
+
+    private string DotClass => Status switch
+    {
+        ProjectTaskStatus.Completed  => "bg-emerald-400",
+        ProjectTaskStatus.InProgress => "bg-amber-400",
+        _                     => "bg-zinc-400"
+    };
+}
+
+<span class="inline-flex items-center gap-2 rounded-md border border-[#3a3146] bg-[#271f30] px-2.5 py-1 text-xs font-medium text-[#d8d1e6]">
+    <span class="size-1.5 rounded-full @DotClass"></span>
+    @Label
+</span>

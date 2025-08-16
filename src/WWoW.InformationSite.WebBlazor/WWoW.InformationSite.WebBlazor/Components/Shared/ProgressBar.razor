@@ -1,0 +1,10 @@
+@code {
+    [Parameter] public int Percent { get; set; } = 0;
+    private string WidthStyle => $"width:{Math.Clamp(Percent, 0, 100)}%";
+}
+
+<div class="h-1.5 w-full rounded-full bg-[#2c2433]">
+    <div class="h-1.5 rounded-full bg-[#8b5cf6]" style="@WidthStyle"
+         role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="@Percent">
+    </div>
+</div>

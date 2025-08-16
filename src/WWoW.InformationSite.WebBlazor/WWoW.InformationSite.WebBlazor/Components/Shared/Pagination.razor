@@ -1,0 +1,56 @@
+@code {
+    [Parameter] public int CurrentPage { get; set; } = 1;
+    [Parameter] public int TotalPages { get; set; } = 1;
+    [Parameter] public EventCallback<int> OnChange { get; set; }
+
+    private IEnumerable<int> Pages()
+    {
+        if (TotalPages <= 7)
+            return Enumerable.Range(1, TotalPages);
+
+        var list = new List<int> { 1, 2, CurrentPage - 1, CurrentPage, CurrentPage + 1, TotalPages - 1, TotalPages }
+            .Where(p => p >= 1 && p <= TotalPages)
+            .Distinct()
+            .OrderBy(p => p)
+            .ToList();
+
+        return list;
+    }
+
+    private bool ShowEllipsisBefore => TotalPages > 7 && Pages().Skip(2).FirstOrDefault() > 3;
+    private bool ShowEllipsisAfter  => TotalPages > 7 && Pages().Reverse().Skip(2).FirstOrDefault() < TotalPages - 2;
+
+    private string PageClass(int p) =>
+        p == CurrentPage
+            ? "inline-flex items-center justify-center h-8 w-8 rounded-full bg-[#2c2433] text-white text-sm font-semibold"
+            : "inline-flex items-center justify-center h-8 w-8 rounded-full text-[#e1d9f3] hover:bg-[#2c2433] hover:text-white text-sm font-medium";
+}
+
+<div class="flex items-center gap-2">
+    <button class="inline-flex h-8 w-8 items-center justify-center rounded-full text-[#e1d9f3] hover:bg-[#2c2433]"
+            disabled="@(CurrentPage == 1)"
+            @onclick="() => OnChange.InvokeAsync(Math.Max(1, CurrentPage - 1))">
+        ‹
+    </button>
+
+    @foreach (var p in Pages())
+    {
+        if (p == Pages().ElementAtOrDefault(2) && ShowEllipsisBefore)
+        {
+            <span class="px-1 text-[#a89bbf]">…</span>
+        }
+
+        <button class="@PageClass(p)" @onclick="() => OnChange.InvokeAsync(p)">@p</button>
+
+        if (p == Pages().Reverse().ElementAtOrDefault(2) && ShowEllipsisAfter)
+        {
+            <span class="px-1 text-[#a89bbf]">…</span>
+        }
+    }
+
+    <button class="inline-flex h-8 w-8 items-center justify-center rounded-full text-[#e1d9f3] hover:bg-[#2c2433]"
+            disabled="@(CurrentPage == TotalPages)"
+            @onclick="() => OnChange.InvokeAsync(Math.Min(TotalPages, CurrentPage + 1))">
+        ›
+    </button>
+</div>

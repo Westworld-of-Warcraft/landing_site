@@ -1,0 +1,42 @@
+@using WWoW.InformationSite.WebBlazor.Models
+
+@code {
+    [Parameter] public Milestone Item { get; set; } = default!;
+}
+
+<section class="mb-10">
+    <div class="px-4">
+        <h3 class="text-white text-sm font-semibold tracking-wide">@Item.Title</h3>
+    </div>
+
+    <div class="px-4 pt-2">
+        <ProgressBar Percent="@Item.Percent" />
+    </div>
+
+    <div class="mt-4 rounded-md border border-[#332b40]">
+        <div class="flex items-center justify-between px-4 py-3">
+            <span class="text-xs uppercase tracking-wide text-[#a89bbf]">
+                @(@Item.Status switch
+                {
+                    ProjectTaskStatus.Completed  => "Completed",
+                    ProjectTaskStatus.InProgress => "In Progress",
+                    _                     => "Planned"
+                })
+            </span>
+            <StatusBadge Status="@Item.Status" />
+        </div>
+
+        @if (Item.Tasks is not null && Item.Tasks.Count > 0)
+        {
+            <div class="divide-y divide-[#332b40]">
+                @foreach (var t in Item.Tasks)
+                {
+                    <div class="flex items-center justify-between px-4 py-3">
+                        <span class="text-sm text-white/90">@t.Title</span>
+                        <StatusBadge Status="@t.Status" />
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</section>
