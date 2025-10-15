@@ -1,0 +1,29 @@
+@* TwitchEmbed Component *@
+
+<div class="p-4">
+    <div class="relative overflow-hidden rounded-xl aspect-video">
+        <iframe 
+            src="@GetTwitchEmbedUrl()"
+            height="100%" 
+            width="100%" 
+            allowfullscreen="true"
+            style="border: none;">
+        </iframe>
+    </div>
+</div>
+
+@code {
+    [Parameter] public string Channel { get; set; } = string.Empty;
+    [Parameter] public string ParentDomain { get; set; } = string.Empty;
+    [Parameter] public bool AutoPlay { get; set; } = false;
+    [Parameter] public bool Muted { get; set; } = false;
+
+    private string GetTwitchEmbedUrl()
+    {
+        // If no parent domain is specified, use localhost for development
+        // For production, you should specify the actual domain
+        var parent = string.IsNullOrEmpty(ParentDomain) ? "localhost" : ParentDomain;
+            
+        return $"https://player.twitch.tv/?channel={Channel}&parent={parent}&autoplay={AutoPlay.ToString().ToLower()}&muted={Muted.ToString().ToLower()}";
+    }
+}
